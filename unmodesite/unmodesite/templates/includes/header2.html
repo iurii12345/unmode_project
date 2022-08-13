@@ -1,0 +1,44 @@
+{% load navigation_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% wagtail_site as site %}
+
+<header class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/">
+            {% if settings.site_settings.Branding.logo %}
+                {% image settings.site_settings.Branding.logo height-50 as logo %}
+                <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+            {% else %}
+                {{ site.site_name }}
+            {% endif %}
+        </a>
+        <!-- Toolbar -->
+        <div class="navbar-toolbar d-flex align-items-center order-lg-3">
+            <a class="navbar-tool me-4" href="#">
+                <div class="navbar-tool-icon-box">
+                    <i class="fa fa-search fs-5"> </i>
+                </div>
+            </a>
+            <!-- Nav Button -->
+            <div class="nav-item d-none d-md-block">
+                <a href="#" class="btn btn-danger mb-0">Поддержать</a>
+            </div>
+        </div>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible menu -->
+        <div class="collapse navbar-collapse me-auto order-lg-2"
+             id="navbarCollapse">
+            <hr class="d-lg-none my-3">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                {% get_site_root as site_root %}
+                {% top_menu parent=site_root calling_page=self %}
+            </ul>
+        </div>
+    </div>
+</header>

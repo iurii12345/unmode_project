@@ -1,0 +1,66 @@
+{% load i18n navigation_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% wagtail_site as site %}
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+         aria-label="Twelfth navbar example">
+        <div class="container align-items-center">
+            <a class="btn btn-lg btn-link d-lg-none rounded-circle custom-mobile-nav-btn"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#navbarsExample10">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+            <a class="navbar-brand fw-bold mx-0 me-lg-4" href="#">
+                {% if settings.site_settings.Branding.logo %}
+                    {% image settings.site_settings.Branding.logo height-50 as logo %}
+                    <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                {% else %}
+                    {{ site.site_name }}
+                    {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                {% endif %}
+            </a>
+            <a class="btn btn-lg btn-link d-lg-none rounded-circle custom-mobile-nav-btn"
+               data-bs-toggle="offcanvas"
+               data-bs-target="#custom-id-pfn5b7yx">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <div class="offcanvas offcanvas-start text-bg-dark"
+                 tabindex="-1"
+                 id="navbarsExample10">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+                    {% if settings.site_settings.Branding.logo %}
+                        {% image settings.site_settings.Branding.logo height-50 as logo %}
+                        <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                    {% else %}
+                        {{ site.site_name }}
+                        {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                    {% endif %}
+                    <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        {% get_site_root as site_root %}
+                        {% top_menu parent=site_root calling_page=self %}
+                    </ul>
+                </div>
+            </div>
+            <form class="d-none d-lg-block"
+                  action="/search/"
+                  method="get"
+                  role="search">
+                <input class="form-control"
+                       id="search-input"
+                       type="text"
+                       name="query"
+                       placeholder = "{% trans 'Search' %}"
+                       autocomplete="off"
+                       name="q"
+                       aria-label="Search">
+            </form>
+        </div>
+    </nav>
+</header>

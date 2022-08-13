@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <figure class="figure">
+            {% image self.image fill-800x600 loading="lazy" class="figure-img img-fluid mx-auto d-block" %}
+            <figcaption class="text-center">{{ self.caption }} <cite title="Attribution">{{ self.attribution }}</cite></figcaption>   
+        </figure>
+    </div>
+</div>
+

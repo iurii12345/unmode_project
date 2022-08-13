@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+
+<div class="col-sm-6 col-lg-3">
+    <div class="card mb-4">
+        <div class="card-fold position-relative">
+            {% if portrait %}
+                {% image page.image fill-640x450-c100 loading='lazy' class="img-fluid" %}
+            {% else %}
+                {% image page.image fill-640x450-c75 loading='lazy' class="img-fluid" %}
+            {% endif %}
+            {% comment %} <img class="card-img" src="assets/images/blog/4by3/10.jpg" alt="Card image"> {% endcomment %}
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{ page.url }}" class="btn-link text-reset stretched-link fw-bold">{{ page.title }}</a>
+            </h4>
+            {% if page.date_published %}
+                <div class="date">
+                    <small class="text-muted">{{ page.date_published }}</small>                             
+                </div>
+            {% endif %} 
+        </div>
+    </div>
+</div>

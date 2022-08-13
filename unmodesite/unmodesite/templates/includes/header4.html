@@ -1,0 +1,122 @@
+{% load navigation_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% wagtail_site as site %}
+ 
+<header>
+    <nav class="navbar-dark bg-dark">
+        <div class="d-block d-lg-none">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-3 text-start" data-aos="fade-up" data-aos-delay="0">
+                        <a class="btn btn-lg btn-link d-lg-none rounded-circle custom-mobile-nav-btn"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#custom-id-pfn5b7yx">
+                            <i class="fa-solid fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="col-6 text-center" data-aos="fade-up" data-aos-delay="150">
+                        <a class="navbar-brand fw-bold py-2 d-inline-block" href="/">
+                            {% if settings.site_settings.Branding.logo %}
+                                {% image settings.site_settings.Branding.logo height-50 as logo %}
+                                <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                            {% else %}
+                                {{ site.site_name }}
+                                {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-3 text-end" data-aos="fade-up" data-aos-delay="300">
+                        <a class="btn btn-lg btn-link d-lg-none rounded-circle custom-mobile-nav-btn"
+                           data-bs-toggle="offcanvas"
+                           data-bs-target="#custom-id-pfn5b7yx">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-start"
+             id="custom-id-pfn5b7yx"
+             aria-hidden="true">
+            <div class="offcanvas-header">
+                <a class="navbar-brand fw-bold py-2 d-inline-block" href="/">
+                    {% if settings.site_settings.Branding.logo %}
+                        {% image settings.site_settings.Branding.logo height-50 as logo %}
+                        <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                    {% else %}
+                        {{ site.site_name }}
+                        {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                    {% endif %}
+                </a>
+                <a class="btn btn-lg btn-link rounded-circle custom-mobile-nav-btn"
+                   data-bs-dismiss="offcanvas">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="nav me-auto mb-2 mb-md-0">
+                    {% get_site_root as site_root %}
+                    {% top_menu parent=site_root calling_page=self %}
+                </ul>
+                <form class="mt-4" action="/search/" method="get" role="search">
+                    <input class="form-control"
+                           id="search-input"
+                           type="text"
+                           name="query"
+                           placeholder="Search"
+                           autocomplete="off"
+                           name="q"
+                           aria-label="Search">
+                </form>
+            </div>
+        </div>
+        <div class="d-none d-lg-block">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-8 d-flex">
+                        <a class="navbar-brand" href="/">
+                            {% if settings.site_settings.Branding.logo %}
+                                {% image settings.site_settings.Branding.logo height-50 as logo %}
+                                <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                            {% else %}
+                                {{ site.site_name }}
+                                {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                            {% endif %}
+                        </a>
+                        <ul class="nav me-auto mb-2 mb-md-0">
+                            {% get_site_root as site_root %}
+                            {% top_menu parent=site_root calling_page=self %}
+                        </ul>
+                        <a href="#"
+                           class="nav-link {% if menuitem.active %}active{% endif %} mx-4 text-light"
+                           data-aos="fade-up"
+                           data-aos-delay="100">Home</a>
+                        <a href="#"
+                           class="mx-4 text-light"
+                           data-aos="fade-up"
+                           data-aos-delay="150">Features</a>
+                        <a href="#"
+                           class="mx-4 text-light"
+                           data-aos="fade-up"
+                           data-aos-delay="250">Blog</a>
+                        <a href="#"
+                           class="mx-4 text-light"
+                           data-aos="fade-up"
+                           data-aos-delay="300">Prices</a>
+                    </div>
+                    <div class="col-3">
+                        <form class="" action="/search/" method="get" role="search">
+                            <input class="form-control"
+                                   id="search-input"
+                                   type="text"
+                                   name="query"
+                                   placeholder="Search"
+                                   autocomplete="off"
+                                   name="q"
+                                   aria-label="Search"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

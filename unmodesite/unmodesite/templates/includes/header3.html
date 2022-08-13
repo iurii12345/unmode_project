@@ -1,0 +1,66 @@
+{% load navigation_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% wagtail_site as site %}
+<header class="navbar-sticky header-static">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold py-2 d-inline-block" href="/">
+                {% if settings.site_settings.Branding.logo %}
+                    {% image settings.site_settings.Branding.logo height-50 as logo %}
+                    <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                {% else %}
+                    {{ site.site_name }}
+                    {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                {% endif %}
+            </a>
+            <div class="navbar-toolbar d-flex align-items-center order-lg-3">
+                <!-- Nav Button -->
+                <form class="me-lg-3 me-4" action="/search/" method="get" role="search">
+                    <input class="form-control"
+                           id="search-input"
+                           type="text"
+                           name="query"
+                           placeholder="Search"
+                           autocomplete="off"
+                           name="q"
+                           aria-label="Search">
+                </form>
+                <div class="nav-item d-none d-md-block">
+                    <a href="#" class="btn btn-danger mb-0">Поддержать</a>
+                </div>
+            </div>
+            <button class="navbar-toggler collapsed"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start"
+                 tabindex="-1"
+                 id="offcanvasNavbar"
+                 aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+                    {% if settings.site_settings.Branding.logo %}
+                        {% image settings.site_settings.Branding.logo height-50 as logo %}
+                        <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                    {% else %}
+                        {{ site.site_name }}
+                        {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                    {% endif %}
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                        {% get_site_root as site_root %}
+                        {% top_menu parent=site_root calling_page=self %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

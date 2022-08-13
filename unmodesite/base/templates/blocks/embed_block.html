@@ -1,0 +1,7 @@
+{% load wagtailembeds_tags %}
+
+{# Embed a YouTube video #}
+{% embed 'https://www.youtube.com/watch?v=Ffu-2jEdLPw' %}
+
+{# This tag can also take the URL from a variable #}
+{% embed page.video_url %}

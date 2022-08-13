@@ -1,0 +1,95 @@
+{% load navigation_tags static i18n wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% wagtail_site as site %}
+{% get_settings use_default_site=True %}
+
+
+<footer class="bg-dark text-white mt-5">
+    <div class="container">   
+        <div class="row pt-5 my-5">
+            <div class="col-md-4 col-sm-8 col-xs-4 mb-4">
+                <div class="footer-text pull-left">
+                    <div class="text-nowrap mb-4">
+                        <a class="d-inline-block me-3" href="/">
+                            {% if settings.site_settings.Branding.logo %}
+                                {% image settings.site_settings.Branding.logo height-50 as logo %}
+                                <img src="{{ logo.url }}" alt="{{ site.site_name }}" />
+                            {% else %}
+                                {{ site.site_name }}
+                                {% comment %} {% include "includes/logo.html" with class="featured-cards__chevron-icon" %} {% endcomment %}
+                            {% endif %}
+                        </a>
+                        {% if page %}
+                            {% for translation in page.get_translations.live %}
+                                {% get_language_info for translation.locale.language_code as lang %}
+                                <a href="{% pageurl translation %}" rel="alternate" hreflang="{{ lang.code }}">
+                                    {{ lang.name_local }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <address>{{ settings.site_settings.ContactSettings.address|richtext }}</address>
+                    <a href = "mailto: {{ settings.site_settings.ContactSettings.email}}">
+                        {{ settings.site_settings.ContactSettings.email}}
+                    </a>
+                    <div class="social mt-2 mb-2"> 
+                            {% if settings.site_settings.SocialMediaSettings.facebook %}
+                                <a class="btn btn-sm btn-outline-light btn-floating me-1" 
+                                href="{{ settings.site_settings.SocialMediaSettings.facebook }}" role="button">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                            {% endif %}
+                            {% if settings.site_settings.SocialMediaSettings.instagram %}
+                                <a class="btn btn-sm btn-outline-light btn-floating me-1"
+                                href="{{ settings.site_settings.SocialMediaSettings.instagram }}" role="button">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            {% endif %}
+                            {% if settings.site_settings.SocialMediaSettings.telegram %}
+                                <a class="btn btn-sm btn-outline-light btn-floating me-1"
+                                href="{{ settings.site_settings.SocialMediaSettings.telegram }}" role="button">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </a>
+                            {% endif %}
+                            {% if settings.site_settings.SocialMediaSettings.twitter %}
+                                <a class="btn btn-sm btn-outline-light btn-floating me-1"
+                                href="{{ settings.site_settings.SocialMediaSettings.twitter }}" role="button">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            {% endif %}
+                            {% if settings.site_settings.SocialMediaSettings.youtube %}
+                                <a class="btn btn-sm btn-outline-light btn-floating me-1"
+                                href="{{ settings.site_settings.SocialMediaSettings.youtube }}" role="button">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 mb-4"></div>
+            <div class="col-md-2 col-sm-4 mb-4">
+                <h5 class="mb-2">{% trans "Navigation" %}</h5>
+                <ul class="navbar-nav flex-column">
+                    {% bottom_menu %} 
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-4 mb-4">
+                <h5 class="mb-2">{% trans "Navigation" %}</h5>
+                <ul class="navbar-nav flex-column">
+                    {% bottom_menu %} 
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-4 mb-4">
+                <div class="d-grid">
+                    <button class="btn btn-danger" type="button" href="{{ settings.site_settings.ImportantPages.donate_page.url }}">
+                        {% trans "Donate" %}
+                    </button>
+                </div>         
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-sm-row py-4 my-4 border-top">
+            {% get_footer_text %}
+        </div>   
+    </div>
+</footer>
+
+

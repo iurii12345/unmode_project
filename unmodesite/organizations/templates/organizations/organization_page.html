@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load i18n navigation_tags wagtailimages_tags %}
+
+{% block content %}
+    <section>
+        <div class="container h-100">
+            <h1>{{ page.title }}</h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <div class="text-center">
+                            {% if page.logo %}
+                                {% image page.logo max-450x300 as image %}
+                                <img src="{{ image.url }}" alt="..." class="img-fluid mb-2" />
+                            {% endif %}
+                            {% comment %} <h5 class="my-3">John Smith</h5> {% endcomment %}
+                            <p class="text-muted mt-3 mb-4">
+                                <small>Если вы представитель организации и хотите добавить 
+                                    или изменить информацию, <a href="">свяжитесь с нами</a></small>
+                            </p>
+                            {% comment %} <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-primary">Follow</button>
+                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                    {% comment %} <div class=" mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex align-items-center p-3">
+                                    <i class="fa-brands fa-twitter fa-lg me-2" style="color: #55acee;"></i>
+                                    <p class="mb-0">@mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg me-2" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active"
+                                            id="home-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#summary-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="summary-tab-pane"
+                                            aria-selected="true">
+                                        {% trans "Summary" %}
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link"
+                                            id="detail-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#detail-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="detail-tab-pane"
+                                            aria-selected="false">
+                                        {% trans "Detail" %}
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link"
+                                            id="disabled-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#disabled-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="disabled-tab-pane"
+                                            aria-selected="false"
+                                            disabled>
+                                        Disabled
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active"
+                                    id="summary-tab-pane"
+                                    role="tabpanel"
+                                    aria-labelledby="summary-tab"
+                                    tabindex="0">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Intro" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ page.introduction }}</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Tags" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {% if page.get_tags %}
+                                                {% for tag in page.get_tags %}
+                                                    <a href="{{ tag.url }}"
+                                                       class="btn btn-sm btn-outline-secondary my-1 me-2">#{{ tag }}</a>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Origin" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">
+                                                {% for country in page.countries %}{{ country.name }}{% endfor %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Address" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ page.address }}</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Phone" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">{{ page.phone_number }}</p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">{% trans "Site" %}</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <a href="{{ page.site }}">{{ page.site }}</a>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Email</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <a href="mailto:{{ page.email }}">{{ page.email }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade"
+                                    id="profile-tab-pane"
+                                    role="tabpanel"
+                                    aria-labelledby="detail-tab"
+                                    tabindex="0">
+                                    {{ page.body }}
+                                </div>
+                                <div class="tab-pane fade"
+                                    id="disabled-tab-pane"
+                                    role="tabpanel"
+                                    aria-labelledby="disabled-tab"
+                                    tabindex="0">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

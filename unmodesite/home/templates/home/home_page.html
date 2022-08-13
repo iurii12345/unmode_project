@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+{% load static %}
+{% block body_class %}
+    template-homepage
+{% endblock body_class %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}">
+{% endblock extra_css %}
+{% block extra_js %}
+    <script src="{% static 'js/tiny-slider.js' %}"></script>
+{% endblock extra_js %}
+{% block content %}
+    <div class="homepage">
+        <!-- Hero Section-->
+        {% image page.image fill-1920x1080 as image %}
+        <section class="pt-5 pb-5 pb-0 hero"
+                 style="background-size: cover;
+                        min-height: 95vh;
+                        background-image: url({{ image.url }});">
+            <div class="bg-overlay position-absolute"></div>
+            <div class="container position-relative zindex-1 col-xl-10 col-xxl-8 px-4 py-5 ">
+                <div class="row align-items-center g-lg-5 py-5">
+                    <div class="card col-lg-7 text-center text-lg-start p-4 p-md-5 border rounded-3">
+                        <h1 class="display-3 fw-bold lh-1 mb-3">{{ page.title }}</h1>
+                        <p class="col-lg-10 fs-5">{{ page.hero_text }}</p>
+                    </div>
+                </div>
+            </div>
+        </section> 
+        {% comment %} <section class="hero">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-lg-1 d-none d-lg-flex align-items-center">
+                        <div class="lc-block d-flex"
+                             style="writing-mode: vertical-rl; transform:rotate(180deg)">
+                            <a class="btn btn-link my-2 text-dark text-decoration-none"
+                               href="#"
+                               role="button">Facebook</a>
+                            <a class="btn btn-link my-4 text-dark text-decoration-none"
+                               href="#"
+                               role="button">Twitter</a>
+                            <a class="btn btn-link my-2 text-dark text-decoration-none"
+                               href="#"
+                               role="button">Youtube</a>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                    <div class="col-sm-6 d-flex d-lg-none flex-sm-column align-items-center justify-content-around mb-4 mb-sm-0">
+                        <div class="lc-block">
+                            <a class="btn btn-link text-dark text-decoration-none"
+                               href="#"
+                               role="button">Facebook</a>
+                        </div>
+                        <div class="lc-block">
+                            <a class="btn btn-link text-dark text-decoration-none"
+                               href="#"
+                               role="button">Twitter</a>
+                        </div>
+                        <div class="lc-block">
+                            <a class="btn btn-link text-dark text-decoration-none"
+                               href="#"
+                               role="button">Youtube</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="lc-block ratio ratio-1x1">
+                            <img style="object-fit:cover" class="img-fluid" src="{{ image.url }}">
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                    <div class="col-lg-4 offset-lg-1">
+                        <div class="lc-block my-5">
+                            <div editable="rich">
+                                <h1 class="display-4 mb-6" data-aos="fade-down" data-aos-delay="150">{{ page.title }}</h1>
+                            </div>
+                        </div>
+                        <div class="lc-block my-5">
+                            <div editable="rich">
+                                <p>{{ page.hero_text }}</p>
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                        <div class="lc-block">
+                            {% if page.hero_cta_link %}
+                                <a href="{% pageurl page.hero_cta_link %}"
+                                   class="btn btn-link"
+                                   data-aos="fade-down"
+                                   data-aos-delay="400">{{ page.hero_cta }}</a>
+                            {% else %}
+                                {{ page.hero_cta }}
+                            {% endif %}
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                </div>
+            </div>
+        </section> {% endcomment %}
+        <!-- Intro Section-->
+        <section class="intro">
+            <div class="container py-5 text-center">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 px-4">
+                        <div class="lc-block mb-4">
+                            <div editable="rich">
+                                <h2>{{ page.promo_title }}</h2>
+                            </div>
+                        </div>
+                        <div class="lc-block mb-4">
+                            <div editable="rich">{{ page.promo_text|richtext }}</div>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container" style="padding-top: 10vh;padding-bottom:10vh">
+                <div class="row align-items-center px-2">
+                    <div class="col-12 col-md-7 col-lg-6">
+                        <div class="lc-block mb-4">
+                            <div editable="rich">
+                                <h2>The quick brown fox jumps.</h2>
+                                <p>
+                                    Aenean vel nisi in ipsum congue fermentum et ut arcu. Proin leo diam, vulputate eu tellus ac, mattis cursus nunc. Aenean vel nisi in ipsum congue fermentum et ut arcu. Proin leo diam, vulputate eu tellus ac, mattis cursus nunc.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                        <div class="lc-block d-flex mb-5">
+                            <div class="pe-3">
+                                <h3 class="h2 mb-0 text-secondary" editable="inline">100%</h3>
+                                <span editable="inline" class="mb-0 text-muted">Satisfaction</span>
+                            </div>
+                            <div class="border-start"></div>
+                            <div class="px-3">
+                                <h3 class="h2 mb-0 text-secondary" editable="inline">24/7</h3>
+                                <span editable="inline" class="mb-0 text-muted">Support</span>
+                            </div>
+                            <div class="border-start"></div>
+                            <div class="ps-3">
+                                <h3 class="h2 mb-0 text-secondary" editable="inline">+40k</h3>
+                                <span editable="inline" class="mb-0 text-muted">Products</span>
+                            </div>
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                    <div class="col-12 col-md-5 col-lg-6">
+                        <div class="lc-block">
+                            <img alt=""
+                                 class="img-fluid mx-auto d-block"
+                                 src="https://cdn.livecanvas.com/media/svg/undraw-sample/undraw_connected_world_wuay.svg">
+                        </div>
+                        <!-- /lc-block -->
+                    </div>
+                    <!-- /col -->
+                </div>
+            </div>
+        </section>
+        <div class="container py-5" id="icon-grid">
+            <h2 class="pb-2 border-bottom">
+                Icon grid
+            </h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#bootstrap"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#cpu-fill"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#calendar3"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#home"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#speedometer2"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                    <svg class="bi text-muted flex-shrink-0 me-3"
+                         width="1.75em"
+                         height="1.75em">
+                        <use xlink:href="#toggles2"/>
+                    </svg>
+                    <div>
+                        <h4 class="fw-bold mb-0">
+                            Featured title
+                        </h4>
+                        <p>
+                            Paragraph of text beneath the heading to explain the heading.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row promo-row">
+                    <div class="featured-cards col-sm-5 col-sm-offset-1">
+                        {% if page.featured_section_1 %}
+                            <h2 class="pb-2 border-bottom">
+                                {{ page.featured_section_1_title }}
+                            </h2>
+                            <ul class="featured-cards__list">
+                                {% for childpage in page.featured_section_1.specific.children|slice:"3" %}
+                                    <li>
+                                        {% include "includes/card/listing-card.html" with page=childpage %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <a class="featured-cards__link" href="/breads">
+                                <span>View more of our breads</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6 promo">
+                        {% if page.promo_image or page.promo_title or page.promo_text %}
+                            <div class="col-lg-10 promo-text">
+                                {% if page.promo_title %}
+                                    <h2>
+                                        {{ page.promo_title }}
+                                    </h2>
+                                {% endif %}
+                                {% if page.promo_text %}{{ page.promo_text|richtext }}{% endif %}
+                            </div>
+                        {% endif %}
+                        {% if page.promo_image %}
+                            <figure>
+                                {% image page.promo_image fill-590x413-c100 %}
+                            </figure>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if page.body %}
+                <div class="container-fluid streamfield">
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 streamfield-column">
+                            {{ page.body }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 locations-section">
+                        {% if page.featured_section_2 %}
+                            <h2 class="pb-2 border-bottom">
+                                {{ page.featured_section_2_title }}
+                            </h2>
+                            {% for childpage in page.featured_section_2.specific.children|slice:"3" %}
+                                {% include "includes/card/location-card.html" with page=childpage %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if page.featured_section_3 %}
+                <section class="latest-posts">
+                    <div class="container">
+                        <header>
+                            <h2 class="pb-2 border-bottom">
+                                {{ page.featured_section_3_title }}
+                            </h2>
+                            <p class="text-big">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </p>
+                        </header>
+                        <div class="row">
+                            {% for childpage in page.featured_section_3.specific.children|slice:"6" %}
+                                {% include "includes/card/picture-card.html" with page=childpage portrait=True %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,7 @@
+Django>=4.0,<4.1
+wagtail>=3.0,<3.1
+anyascii==0.3.1
+psycopg2==2.9.3
+python-dotenv==0.20.0
+psycopg2==2.9.3
+wagtail-localize==1.2.1

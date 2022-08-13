@@ -1,0 +1,27 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+
+<div class="col-sm-6 col-lg-4 grid-item">
+    <div class="card mb-4">
+        {% if blog.image %}
+            <div class="card-fold position-relative">
+                {% image blog.image fill-400x250 as image %}
+                <img src="{{ image.url }}" alt="..." class="card-img-top" />
+            </div>
+        {% endif %}
+        <div class="card-body">
+            <h4 class="card-title"><a class="text-reset stretched-link" href="{% pageurl blog %}">{{ blog.title }}</a></h4>
+            {% if blog.subtitle %}
+                <h6 class="card-subtitle mb-2 text-muted">{{ blog.subtitle }}</h6>
+            {% endif %} 
+            {% if blog.introduction %}           
+                <p class="card-text">{{ blog.introduction|truncatewords:30 }}</p>
+            {% endif %}                                      
+            {% if blog.date_published %}
+                <div class="date">
+                    <small class="text-muted">{{ blog.date_published }}</small>                             
+                </div>
+            {% endif %}                        
+        </div>
+    </div>
+</div>
