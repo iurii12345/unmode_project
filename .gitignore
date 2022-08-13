@@ -129,5 +129,7 @@ dmypy.json
 .pyre/
 
 
-unmodesite/media
-unmodesite/frontend
+
+frontend/
+media/
+frontend/
