@@ -132,3 +132,9 @@ dmypy.json
 
 media/
 frontend/
+
+.trunk
+.flake8
+.hadolint.yaml
+.isort.cfg
+.markdownlint.yaml
