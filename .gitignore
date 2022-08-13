@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 
-/media
-/frontend
+media/
+frontend/
